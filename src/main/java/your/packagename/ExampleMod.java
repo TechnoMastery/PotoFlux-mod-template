@@ -12,11 +12,11 @@ public class ExampleMod {
 
     public ExampleMod() {
         ModEventBus modEventBus = PotoFluxLoadingContext.get().getModEventBus();
+
+        modEventBus.addListener(RegisterTabsEvent.class, this::onRegisterTabs);
     }
 
     private void onRegisterTabs(RegisterTabsEvent event) {
         Tabs.register(event.reg);
     }
-
-
 }
