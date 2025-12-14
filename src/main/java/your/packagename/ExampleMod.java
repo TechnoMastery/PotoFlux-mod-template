@@ -3,6 +3,7 @@ package your.packagename;
 import net.minheur.potoflux.loader.PotoFluxLoadingContext;
 import net.minheur.potoflux.loader.mod.Mod;
 import net.minheur.potoflux.loader.mod.ModEventBus;
+import net.minheur.potoflux.loader.mod.events.RegisterLangEvent;
 import net.minheur.potoflux.loader.mod.events.RegisterTabsEvent;
 import your.packagename.tabs.Tabs;
 
@@ -14,9 +15,21 @@ public class ExampleMod {
         ModEventBus modEventBus = PotoFluxLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(RegisterTabsEvent.class, this::onRegisterTabs);
+        modEventBus.addListener(RegisterLangEvent.class, this::onRegisterLang);
     }
 
     private void onRegisterTabs(RegisterTabsEvent event) {
         Tabs.register(event.reg);
+    }
+    private void onRegisterLang(RegisterLangEvent event) {
+        event.registerSupportedLang(ExampleMod.class);
+    }
+
+    public static Path getModDir() {
+        Path dir = PotoFlux.getModDataDir().resolve(MOD_ID);
+        try {
+            Files.createDirectories(dir);
+        } catch (IOException ignored) {}
+        return dir;
     }
 }
