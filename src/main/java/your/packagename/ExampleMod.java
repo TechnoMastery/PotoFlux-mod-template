@@ -7,6 +7,7 @@ import net.minheur.potoflux.loader.mod.ModEventBus;
 import net.minheur.potoflux.loader.mod.events.RegisterLangEvent;
 import net.minheur.potoflux.loader.mod.events.RegisterTabsEvent;
 import your.packagename.tabs.Tabs;
+import your.packagename.translations.ExampleModTranslations;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +28,7 @@ public class ExampleMod {
         Tabs.register(event.reg);
     }
     private void onRegisterLang(RegisterLangEvent event) {
-        event.registerSupportedLang(ExampleMod.class);
+        event.registerLang(new ExampleModTranslations());
     }
 
     public static Path getModDir() {
