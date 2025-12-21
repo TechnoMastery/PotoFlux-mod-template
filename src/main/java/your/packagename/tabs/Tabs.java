@@ -1,6 +1,6 @@
 package your.packagename.tabs;
 
-import net.minheur.potoflux.registry.IRegistry;
+import net.minheur.potoflux.loader.mod.events.RegisterTabsEvent;
 import net.minheur.potoflux.registry.RegistryList;
 import net.minheur.potoflux.screen.tabs.Tab;
 import net.minheur.potoflux.translations.Translations;
@@ -22,8 +22,8 @@ public class Tabs {
     // example tab
     public final Tab MY_TAB = LIST.add(new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), Translations.get("yourmodid:tabs.yourTab.name"), YourTabClass.class));
 
-    public static void register(IRegistry<Tab> reg) {
+    public static void register(RegisterTabsEvent event) {
         INSTANCE = new Tabs();
-        INSTANCE.LIST.register(reg);
+        INSTANCE.LIST.register(event.reg);
     }
 }
