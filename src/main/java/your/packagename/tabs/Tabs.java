@@ -1,19 +1,29 @@
 package your.packagename.tabs;
 
-import net.minheur.potoflux.registry.IRegistry;
+import net.minheur.potoflux.loader.mod.events.RegisterTabsEvent;
 import net.minheur.potoflux.registry.RegistryList;
 import net.minheur.potoflux.screen.tabs.Tab;
+import net.minheur.potoflux.translations.Translations;
 import net.minheur.potoflux.utils.ressourcelocation.ResourceLocation;
 import your.packagename.ExampleMod;
 import your.packagename.tabs.all.YourTabClass;
 
 public class Tabs {
-    private static final RegistryList<Tab> LIST = new RegistryList<>();
+    private final RegistryList<Tab> LIST = new RegistryList<>();
+    private static boolean hasGenerated = false;
+
+    public static Tabs INSTANCE;
+
+    public Tabs() {
+        if (hasGenerated) throw new IllegalStateException("Can't create the registry 2 times !");
+        hasGenerated = true;
+    }
 
     // example tab
-    public static final Tab MY_TAB = LIST.add(new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), "Your tab name", YourTabClass.class));
+    public final Tab MY_TAB = LIST.add(new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), Translations.get("yourmodid:tabs.yourTab.name"), YourTabClass.class));
 
-    public static void register(IRegistry<Tab> reg) {
-        LIST.register(reg);
+    public static void register(RegisterTabsEvent event) {
+        INSTANCE = new Tabs();
+        INSTANCE.LIST.register(event.reg);
     }
 }

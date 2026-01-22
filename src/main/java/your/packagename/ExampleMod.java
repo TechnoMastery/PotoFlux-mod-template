@@ -23,13 +23,10 @@ public class ExampleMod {
     public ExampleMod() {
         ModEventBus modEventBus = PotoFluxLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(RegisterTabsEvent.class, this::onRegisterTabs);
-        modEventBus.addListener(RegisterLangEvent.class, this::onRegisterLang);
+        modEventBus.addListener(Tabs::register);
+        modEventBus.addListener(this::onRegisterLang);
     }
 
-    private void onRegisterTabs(RegisterTabsEvent event) {
-        Tabs.register(event.reg);
-    }
     private void onRegisterLang(RegisterLangEvent event) {
         event.registerLang(new ExampleModTranslations());
     }
