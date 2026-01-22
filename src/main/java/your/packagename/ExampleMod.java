@@ -13,9 +13,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Mod(modId = ExampleMod.MOD_ID)
+@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = ExampleMod.COMPATIBLE_VERSIONS)
 public class ExampleMod {
     public static final String MOD_ID = "yourmodid";
+    public static final String[] COMPATIBLE_VERSIONS = new String[] {
+            "6.0"
+    };
 
     public ExampleMod() {
         ModEventBus modEventBus = PotoFluxLoadingContext.get().getModEventBus();
