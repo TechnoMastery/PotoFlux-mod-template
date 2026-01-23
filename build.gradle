@@ -31,6 +31,9 @@ test {
 tasks.register("run", JavaExec) {
     group = "potoflux"
     description = "Run PotoFlux"
+
     classpath = sourceSets.main.runtimeClasspath
     mainClass.set("net.minheur.potoflux.PotoFlux")
+
+    args("devEnv")
 }
