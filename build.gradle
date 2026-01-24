@@ -24,6 +24,27 @@ dependencies {
     implementation "org.reflections:reflections:0.10.2"
 }
 
+processResources {
+    filesMatching("version.properties") {
+        expand "version": version
+    }
+}
+
+tasks.register("generateModVersionProperties") {
+    def outputDir = file("$buildDir/generated/resources")
+    outputs.dir outputDir
+
+    doLast {
+        outputDir.mkdirs()
+        def file = new File(outputDir, "version.properties")
+        file.text = "version=${project.version}"
+    }
+}
+
+sourceSets.main.resources.srcDir("$buildDir/generated/resources")
+
+tasks.processResources.dependsOn(generateModVersionProperties)
+
 test {
     useJUnitPlatform()
 }

@@ -5,14 +5,17 @@ import net.minheur.potoflux.loader.PotoFluxLoadingContext;
 import net.minheur.potoflux.loader.mod.Mod;
 import net.minheur.potoflux.loader.mod.ModEventBus;
 import net.minheur.potoflux.loader.mod.events.RegisterLangEvent;
+import net.minheur.potoflux.logger.LogCategories;
+import net.minheur.potoflux.logger.PtfLogger;
 import your.packagename.tabs.Tabs;
 import your.packagename.translations.ExampleModTranslations;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Properties;
 
-@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = {"6.0"})
+@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = {"6.1"})
 public class ExampleMod {
     public static final String MOD_ID = "yourmodid";
 
@@ -33,5 +36,18 @@ public class ExampleMod {
             Files.createDirectories(dir);
         } catch (IOException ignored) {}
         return dir;
+    }
+
+    public static String getVersion() {
+        try {
+            Properties props = new Properties();
+            props.load(ExampleMod.class.getResourceAsStream("/version.properties"));
+
+            return props.getProperty("version");
+        } catch (IOException e) {
+            e.printStackTrace();
+            PtfLogger.error("Could not get version for mod " + MOD_ID, LogCategories.MOD_LOADER);
+            return null;
+        }
     }
 }
