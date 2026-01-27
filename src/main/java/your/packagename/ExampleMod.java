@@ -41,7 +41,7 @@ public class ExampleMod {
     public static String getVersion() {
         try {
             Properties props = new Properties();
-            props.load(ExampleMod.class.getResourceAsStream("/version.properties"));
+            props.load(ExampleMod.class.getResourceAsStream("/modVersion.properties"));
 
             return props.getProperty("version");
         } catch (IOException e) {
