@@ -15,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
-@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = {"6.4", "6.5"})
+@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = {"6.6"})
 public class ExampleMod {
     public static final String MOD_ID = "yourmodid";
 
