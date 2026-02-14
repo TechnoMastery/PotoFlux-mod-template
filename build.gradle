@@ -54,7 +54,7 @@ processResources {
 build.dependsOn jar
 
 tasks.named("sourcesJar") {
-    dependsOn(generateVersionProperties)
+    dependsOn(generateModVersionProperties)
 
     exclude("**/*.json", "**/*.toml", "**/*.lang")
 }
@@ -76,6 +76,12 @@ tasks.processResources.dependsOn(generateModVersionProperties)
 
 test {
     useJUnitPlatform()
+}
+
+tasks.named("sourcesJar") {
+    dependsOn(generateModVersionProperties)
+
+    exclude("**/*.json", "**/*.toml", "**/*.lang")
 }
 
 tasks.register("run", JavaExec) {
