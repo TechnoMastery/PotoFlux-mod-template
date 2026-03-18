@@ -15,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
-@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = {"6.4", "6.5"})
+@Mod(modId = ExampleMod.MOD_ID, version = "1.0", compatibleVersions = {"6.7"}, compatibleVersionUrl = "https://technomastery.github.io/PotoFluxAppData/modVersions/template.json") // WARNING: use only one of the two compatible version system. When both are present, the local one is always used. the online one is for you to follow the link and get an example.
 public class ExampleMod {
     public static final String MOD_ID = "yourmodid";
 
