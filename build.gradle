@@ -8,6 +8,7 @@ group = 'your.packagename'
 version = '1.0'
 
 def javafxversion = "17.0.10"
+def ptfVersion = "7.0"
 
 repositories {
     mavenCentral()
@@ -18,6 +19,16 @@ repositories {
             password = project.findProperty("gpr.key")
         }
     }
+}
+
+javadoc {
+    options.links(
+            "https://technomastery.github.io/PotoFluxAppData/javadoc/$ptfVersion",
+            "https://openjfx.io/javadoc/17/",
+            "https://javadoc.io/doc/org.reflections/reflections/0.10.2/",
+            "https://javadoc.io/doc/com.google.code.gson/gson/2.11.0/",
+            "https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/"
+    )
 }
 
 java {
@@ -41,7 +52,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // PotoFlux
-    implementation 'net.minheur:potoflux:7.0'
+    implementation "net.minheur:potoflux:$ptfVersion"
 
 }
 
