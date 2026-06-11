@@ -3,7 +3,7 @@ package your.packagename.tabs;
 import net.minheur.potoflux.loader.mod.events.RegisterTabsEvent;
 import net.minheur.potoflux.registry.RegistryList;
 import net.minheur.potoflux.screen.tabs.Tab;
-import net.minheur.potoflux.translations.Translations;
+import net.minheur.potoflux.utils.SmartSupplier;
 import net.minheur.potoflux.utils.ressourcelocation.ResourceLocation;
 import your.packagename.ExampleMod;
 import your.packagename.tabs.all.YourTabClass;
@@ -20,7 +20,7 @@ public class Tabs {
     }
 
     // example tab
-    public final Tab MY_TAB = LIST.add(new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), Translations.get("yourmodid:tabs.yourTab.name"), YourTabClass.class));
+    public final SmartSupplier<Tab> MY_TAB = LIST.add(() -> new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), YourTabClass.class));
 
     public static void register(RegisterTabsEvent event) {
         INSTANCE = new Tabs();
