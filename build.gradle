@@ -1,9 +1,13 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'application'
 }
 
 group = 'your.packagename'
 version = '1.0'
+
+def javafxversion = "17.0.10"
 
 repositories {
     mavenCentral()
@@ -24,13 +28,20 @@ java {
     withJavadocJar()
 }
 
+javafx {
+    version '17'
+    modules = [ 'javafx.controls', 'javafx.graphics' ]
+}
 
 dependencies {
+    implementation "org.openjfx:javafx-controls:$javafxversion"
+    implementation "org.openjfx:javafx-graphics:$javafxversion"
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // PotoFlux
-    implementation 'net.minheur:potoflux:6.10'
+    implementation 'net.minheur:potoflux:7.0'
 
 }
 
@@ -73,7 +84,7 @@ tasks.named("sourcesJar") {
     exclude("**/*.json", "**/*.toml", "**/*.lang")
 }
 
-tasks.register("run", JavaExec) {
+tasks.named("run", JavaExec) {
     group = "potoflux"
     description = "Run PotoFlux"
 
