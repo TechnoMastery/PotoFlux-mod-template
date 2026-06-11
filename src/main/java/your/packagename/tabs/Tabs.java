@@ -9,21 +9,12 @@ import your.packagename.ExampleMod;
 import your.packagename.tabs.all.YourTabClass;
 
 public class Tabs {
-    private final RegistryList<Tab> LIST = new RegistryList<>();
-    private static boolean hasGenerated = false;
-
-    public static Tabs INSTANCE;
-
-    public Tabs() {
-        if (hasGenerated) throw new IllegalStateException("Can't create the registry 2 times !");
-        hasGenerated = true;
-    }
+    private static final RegistryList<Tab> LIST = new RegistryList<>();
 
     // example tab
-    public final SmartSupplier<Tab> MY_TAB = LIST.add(() -> new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), YourTabClass.class));
+    public static final SmartSupplier<Tab> MY_TAB = LIST.add(() -> new Tab(new ResourceLocation(ExampleMod.MOD_ID, "your_tab_id"), YourTabClass.class));
 
     public static void register(RegisterTabsEvent event) {
-        INSTANCE = new Tabs();
-        INSTANCE.LIST.register(event.reg);
+        LIST.register(event.reg);
     }
 }
