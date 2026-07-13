@@ -78,6 +78,9 @@ dependencies {
     // PotoFlux
     implementation "net.minheur:potoflux:$ptfVersion"
 
+    // themes
+    implementation("io.github.mkpaz:atlantafx-base:2.1.0")
+
 }
 
 processResources {
