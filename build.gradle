@@ -8,8 +8,8 @@ plugins {
 group = 'your.packagename'
 version = '1.0'
 
-def javafxversion = "17.0.10"
-def ptfVersion = "7.0"
+def javafxversion = "21.0.7"
+def ptfVersion = "8.0.0"
 
 publishing {
     publications {
@@ -23,8 +23,8 @@ publishing {
         maven {
             url = uri ("https://maven.pkg.github.com/TechnoMastery/PotoFlux-mod-template")
             credentials {
-                username = project.findProperty("grp.user")
-                password = project.findProperty("grp.key")
+                username = project.findProperty("gpr.user")
+                password = project.findProperty("gpr.key")
             }
         }
     }
@@ -57,14 +57,14 @@ javadoc {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
     withSourcesJar()
     withJavadocJar()
 }
 
 javafx {
-    version '17'
+    version '21'
     modules = [ 'javafx.controls', 'javafx.graphics' ]
 }
 
