@@ -9,7 +9,7 @@ group = 'your.packagename'
 version = '1.0'
 
 def javafxversion = "21.0.7"
-def ptfVersion = "8.0.0"
+def ptfVersion = "8.0.1"
 
 publishing {
     publications {
@@ -48,7 +48,7 @@ repositories {
 javadoc {
     options.links(
             "https://technomastery.github.io/PotoFluxAppData/javadoc/$ptfVersion",
-            "https://openjfx.io/javadoc/17/",
+            "https://openjfx.io/javadoc/21/",
             "https://javadoc.io/doc/org.reflections/reflections/0.10.2/",
             "https://javadoc.io/doc/com.google.code.gson/gson/2.11.0/",
             "https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/"
@@ -65,20 +65,16 @@ java {
 
 javafx {
     version '21'
-    modules = [ 'javafx.controls', 'javafx.graphics' ]
+    modules = [ 'javafx.controls', 'javafx.graphics' ] // You may add 'javafx.media' if required by your mod
 }
 
 dependencies {
-    implementation "org.openjfx:javafx-controls:$javafxversion"
-    implementation "org.openjfx:javafx-graphics:$javafxversion"
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // PotoFlux
     implementation "net.minheur:potoflux:$ptfVersion"
-
-    // themes
     implementation("io.github.mkpaz:atlantafx-base:2.1.0")
 
 }
