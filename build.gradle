@@ -8,7 +8,6 @@ plugins {
 group = 'your.packagename'
 version = '1.0'
 
-def javafxversion = "21.0.7"
 def ptfVersion = "8.0.1"
 
 publishing {
